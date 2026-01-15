@@ -1,0 +1,6 @@
+CREATE (n13:`COLHEITE FELIZ`)<-[:JOGA]-(n0:ANA)-[:SEGUI]->(n18:BEATRIZ)-[:SEGUI]->(n0)-[:FAZ PARTE]->(n4:ANIME),
+(n16:`FILME/SÉRIE`)<-[:FAZ PARTE]-(n18)-[:SEGUI]->(n19:CAMILA)-[:SEGUI]->(n21:ESTHER)<-[:SEGUI]-(n20:DUDA)<-[:SEGUI]-(n21)-[:SEGUI]->(n19)-[:FAZ PARTE]->(n16),
+(:JOGOS)<-[:FAZ PARTE]-(n21)-[:FAZ PARTE]->(n16),
+(n18)-[:FAZ PARTE]->(n4),
+(n14:DRAGONCITY)<-[:JOGA]-(n20)-[:JOGA]->(n15:COD)<-[:JOGA]-(n19)-[:JOGA]->(n13),
+(n14)<-[:JOGA]-(n21)-[:JOGA]->(n15)
