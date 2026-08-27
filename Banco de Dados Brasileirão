@@ -1,0 +1,51 @@
+Modelo do Campeonato Brasileiro. 
+
+create database brasileiro;
+use brasileiro;
+
+--1. TABELA CLUBE
+create table clube (
+    idclube int primary key,
+    nome varchar(100) not null unique,
+    sigla varchar(3) not null unique,
+    estado varchar(100) not null,
+    anodefundacao int not null
+);
+
+--2. TABELA EQUIPE (Separa as categorias do mesmo clube)
+create table equipe (
+    idequipe int primary key,
+    idclube int not null,
+    nome varchar(100) not null,
+    categoria varchar(20) not null,
+    foreign key (idclube) references clube(idclube)
+);
+
+--3. TABELA JOGADOR (Atletas vinculados às suas equipes)
+create table jogador (
+    idjogador int primary key,
+    nome varchar(100) not null,
+    idequipe int not null,
+    foreign key (idequipe) references equipe(idequipe)
+);
+
+--4. TABELA PARTIDA (Confronto entre dois times)
+create table partida (
+    idpartida int primary key,
+    idequipe_mandante int not null,
+    idequipe_visitante int not null,
+    foreign key (idequipe_mandante) references equipe(idequipe),
+    foreign key (idequipe_visitante) references equipe(idequipe)
+);
+
+--5. TABELA ATUACAO_JOGADOR (Registra a participação, gols e cartões do jogador por partida)
+create table atuacao_jogador (
+    idpartida int not null,
+    idjogador int not null,
+    name varchar(100) not null,
+    numgols int default 0,
+    numcartoes int default 0,
+    primary key (idpartida, idjogador),
+    foreign key (idpartida) references partida(idpartida),
+    foreign key (idjogador) references jogador(idjogador)
+);
